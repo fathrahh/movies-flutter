@@ -56,13 +56,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   ignoring: true,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                        gradient: RadialGradient(
-                      colors: [
-                        Colors.transparent,
-                        Color.fromRGBO(25, 24, 37, 1),
-                      ],
-                      radius: 1.2,
-                    )),
+                      gradient: RadialGradient(
+                        colors: [
+                          Colors.transparent,
+                          Color.fromRGBO(25, 24, 37, 1),
+                        ],
+                        radius: 1.2,
+                      ),
+                    ),
                   ),
                 ),
               ),

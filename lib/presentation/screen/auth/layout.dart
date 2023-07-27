@@ -20,8 +20,9 @@ class AuthLayout extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewPadding.top + 32.0,
-              horizontal: 16.0),
+            vertical: MediaQuery.of(context).viewPadding.top + 32.0,
+            horizontal: 16.0,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,11 +30,12 @@ class AuthLayout extends StatelessWidget {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 1,
-                    )),
+                  borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 1,
+                  ),
+                ),
                 child: SvgPicture.asset(
                   backIconsAsset,
                   height: 24,
@@ -44,14 +46,17 @@ class AuthLayout extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               RichText(
-                  textAlign: TextAlign.start,
-                  text: TextSpan(
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 28.0,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5),
-                      children: title)),
+                textAlign: TextAlign.start,
+                text: TextSpan(
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.w600,
+                    height: 1.5,
+                  ),
+                  children: title,
+                ),
+              ),
               const SizedBox(height: 36),
               ...children,
             ],
