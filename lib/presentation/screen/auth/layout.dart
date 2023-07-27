@@ -5,7 +5,7 @@ class AuthLayout extends StatelessWidget {
   final List<Widget> children;
   final List<InlineSpan> title;
   final String? subtitle;
-  final String backIconsAsset = "assets/icons/arrow-left.svg";
+  final String backIconsAsset = "assets/icons/chevron-left.svg";
 
   const AuthLayout({
     super.key,
@@ -26,23 +26,12 @@ class AuthLayout extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 1,
-                  ),
-                ),
-                child: SvgPicture.asset(
-                  backIconsAsset,
-                  height: 24,
-                  width: 24,
-                  colorFilter:
-                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-                ),
+              SvgPicture.asset(
+                backIconsAsset,
+                height: 24,
+                width: 24,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
               const SizedBox(height: 40),
               RichText(

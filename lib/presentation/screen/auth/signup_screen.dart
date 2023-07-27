@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:filmio/common_widgets/common_gradient.dart';
 import 'package:filmio/common_widgets/diveder_text.dart';
 import 'package:filmio/common_widgets/gradient_text.dart';
 import 'package:filmio/common_widgets/gradient_text_field_form.dart';
 import 'package:filmio/presentation/screen/auth/layout.dart';
-import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -13,7 +14,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final String googleIcon = "assets/icons/Google.svg";
   late TextEditingController _controller;
+  bool? _cbTerm = false;
 
   @override
   void initState() {
@@ -25,6 +28,10 @@ class _SignUpPageState extends State<SignUpPage> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  void toggleCb(bool? cb) {
+    setState(() => _cbTerm = cb);
   }
 
   @override
@@ -43,45 +50,112 @@ class _SignUpPageState extends State<SignUpPage> {
       Column(
         children: <Widget>[
           const GradientBorderTextField(
-            hintText: "Email",
+            hintText: "Enter Your Email",
           ),
           const SizedBox(
             height: 16,
           ),
           const GradientBorderTextField(
-            hintText: "Password",
+            hintText: "Enter Your Number Phone",
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          const GradientBorderTextField(
+            hintText: "Create Password",
             obscureText: true,
           ),
           const SizedBox(
             height: 16,
           ),
-          Container(
-            child: CheckboxListTile(
-              value: true,
-              contentPadding: EdgeInsets.zero,
-              dense: true,
-              controlAffinity: ListTileControlAffinity.leading,
-              title: RichText(
-                text: const TextSpan(
-                  style: TextStyle(fontSize: 14),
+          const GradientBorderTextField(
+            hintText: "Confirm Your Password",
+            obscureText: true,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Stack(
                   children: [
-                    TextSpan(
-                      text: "By signuing up, you agree to our ",
+                    Positioned.fill(
+                      child: Container(
+                        padding: const EdgeInsets.all(1),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: (_cbTerm ?? false)
+                              ? const [
+                                  BoxShadow(
+                                      color: Colors.black,
+                                      blurRadius: 4,
+                                      spreadRadius: 0)
+                                ]
+                              : [],
+                          color: Colors.transparent,
+                        ),
+                      ),
                     ),
-                    TextSpan(
-                      text: "Terms of Service",
-                    ),
-                    TextSpan(
-                      text: " and ",
-                    ),
-                    TextSpan(
-                      text: "Privacy Policy",
+                    SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: Checkbox(
+                        value: _cbTerm,
+                        onChanged: toggleCb,
+                      ),
                     ),
                   ],
                 ),
               ),
-              onChanged: (a) {},
-            ),
+              const SizedBox(
+                width: 8.0,
+              ),
+              Expanded(
+                child: RichText(
+                  text: const TextSpan(
+                    style: TextStyle(
+                      fontSize: 14,
+                      height: 1.5,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: "By signing up, you agree to our ",
+                      ),
+                      WidgetSpan(
+                        child: GradientText(
+                          "Terms of Service",
+                          gradient: gradientYY,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      TextSpan(
+                        text: " and ",
+                      ),
+                      WidgetSpan(
+                        child: GradientText(
+                          "Privacy Policy",
+                          gradient: gradientYY,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      TextSpan(
+                        text: ".",
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 16.0,
           ),
           ElevatedButton(
             onPressed: () {},
@@ -129,12 +203,15 @@ class _SignUpPageState extends State<SignUpPage> {
                     minWidth: 88.0,
                     minHeight: 36.0), // min sizes for Material buttons
                 alignment: Alignment.center,
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Logo Here "),
-                    Text("Sign up with Google"),
+                    SvgPicture.asset(googleIcon),
+                    const SizedBox(
+                      width: 8.0,
+                    ),
+                    const Text("Sign up with Google"),
                   ],
                 ),
               ),
