@@ -1,8 +1,13 @@
+import 'package:filmio/common_widgets/checkbox.dart';
 import 'package:filmio/common_widgets/common_gradient.dart';
+import 'package:filmio/common_widgets/diveder_text.dart';
+import 'package:filmio/common_widgets/gradient_button.dart';
 import 'package:filmio/common_widgets/gradient_text.dart';
 import 'package:filmio/common_widgets/gradient_text_field_form.dart';
 import 'package:filmio/presentation/screen/auth/layout.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,7 +17,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final String googleIcon = "assets/icons/Google.svg";
   late TextEditingController _controller;
+  bool? rememberPs = false;
 
   @override
   void initState() {
@@ -58,24 +65,32 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: CheckboxListTile(
-                  value: true,
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                  controlAffinity: ListTileControlAffinity.leading,
-                  title: RichText(
-                    text: const TextSpan(
-                        style: TextStyle(fontSize: 14),
-                        text: "Remember your password"),
-                  ),
-                  onChanged: (a) {},
+                child: Row(
+                  children: [
+                    CustomCheckbox(
+                      value: rememberPs,
+                      onChanged: (value) => setState(() => rememberPs = value),
+                    ),
+                    RichText(
+                      text: const TextSpan(
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        text: "Remember your password",
+                      ),
+                    ),
+                  ],
                 ),
               ),
               GestureDetector(
-                onTap: () => Navigator.pushNamed(context, "/sign-up"),
+                onTap: () => Navigator.pushNamed(context, "/forgot-password"),
                 child: RichText(
                   text: const TextSpan(
-                    style: TextStyle(fontSize: 14),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
                     text: "Forgot your password ?",
                   ),
                 ),
@@ -83,14 +98,55 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
           Text(_controller.value.text),
-          Row(children: <Widget>[
-            Expanded(
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Login')))
-          ])
+          const GradientButton(
+            text: "Sign in",
+          ),
+          const SizedBox(
+            height: 32,
+          ),
+          const DivederText(
+            text: "Or",
+          ),
+          TextButton(
+            style: const ButtonStyle(
+              backgroundColor: MaterialStatePropertyAll(Colors.transparent),
+            ),
+            onPressed: () {},
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(googleIcon),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                const Text(
+                  "Sign up with Google",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 180),
+          RichText(
+            text: TextSpan(
+              style: TextStyle(),
+              children: [
+                const TextSpan(text: "New to Filmio? "),
+                WidgetSpan(
+                  child: GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, "/sign-up"),
+                    child: const GradientText(
+                      "Sign up now",
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     ]);

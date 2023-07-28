@@ -1,10 +1,11 @@
+import 'package:filmio/common_widgets/common_gradient.dart';
 import 'package:flutter/material.dart';
 
 class GradientText extends StatelessWidget {
   const GradientText(
     this.text, {
     super.key,
-    required this.gradient,
+    this.gradient = gradientYY,
     this.style,
   });
 

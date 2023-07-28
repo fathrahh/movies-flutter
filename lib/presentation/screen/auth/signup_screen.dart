@@ -1,3 +1,5 @@
+import 'package:filmio/common_widgets/checkbox.dart';
+import 'package:filmio/common_widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:filmio/common_widgets/common_gradient.dart';
@@ -78,37 +80,9 @@ class _SignUpPageState extends State<SignUpPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Container(
-                        padding: const EdgeInsets.all(1),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: (_cbTerm ?? false)
-                              ? const [
-                                  BoxShadow(
-                                      color: Colors.black,
-                                      blurRadius: 4,
-                                      spreadRadius: 0)
-                                ]
-                              : [],
-                          color: Colors.transparent,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: Checkbox(
-                        value: _cbTerm,
-                        onChanged: toggleCb,
-                      ),
-                    ),
-                  ],
-                ),
+              CustomCheckbox(
+                value: _cbTerm,
+                onChanged: toggleCb,
               ),
               const SizedBox(
                 width: 8.0,
@@ -157,30 +131,11 @@ class _SignUpPageState extends State<SignUpPage> {
           const SizedBox(
             height: 16.0,
           ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(80.0),
-              )),
-              padding: MaterialStateProperty.all(const EdgeInsets.all(0.0)),
-            ),
-            child: Ink(
-              decoration: const BoxDecoration(
-                gradient: gradientYY,
-                borderRadius: BorderRadius.all(Radius.circular(80.0)),
-              ),
-              child: Container(
-                constraints: const BoxConstraints(
-                    minWidth: 88.0,
-                    minHeight: 36.0), // min sizes for Material buttons
-                alignment: Alignment.center,
-                child: const Text(
-                  'Sign Up',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+          const GradientButton(
+            text: "Sign Up",
+          ),
+          const SizedBox(
+            height: 16.0,
           ),
           const DivederText(
             text: "Or",

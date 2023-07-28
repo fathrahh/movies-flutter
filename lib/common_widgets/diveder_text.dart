@@ -17,16 +17,19 @@ class DivederText extends StatelessWidget {
               margin: const EdgeInsets.only(left: 10.0, right: 15.0),
               child: const Divider(
                 color: Colors.white,
-                height: 50,
+                thickness: 2.0,
               )),
         ),
-        Text(text),
+        Text(
+          text,
+          style: const TextStyle(fontWeight: FontWeight.w500),
+        ),
         Expanded(
           child: Container(
               margin: const EdgeInsets.only(left: 15.0, right: 10.0),
               child: const Divider(
+                thickness: 2.0,
                 color: Colors.white,
-                height: 50,
               )),
         ),
       ],

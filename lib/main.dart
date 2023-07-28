@@ -1,3 +1,4 @@
+import 'package:filmio/presentation/screen/auth/forgot_password_screen.dart';
 import 'package:filmio/presentation/screen/auth/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:filmio/presentation/screen/home/home_screen.dart';
@@ -15,18 +16,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: theme.copyWith(
-          textTheme: Theme.of(context).textTheme.apply(
-                bodyColor: Colors.white,
-                displayColor: Colors.white,
-              ),
-        ),
-        initialRoute: '/login',
-        routes: {
-          '/': (context) => const MyHomePage(title: "flutter App"),
-          '/login': (context) => const LoginPage(),
-          '/sign-up': (context) => const SignUpPage(),
-        });
+      title: 'Flutter Demo',
+      theme: theme.copyWith(
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Colors.white,
+              displayColor: Colors.white,
+            ),
+      ),
+      initialRoute: '/login',
+      routes: {
+        '/': (context) => const MyHomePage(title: "flutter App"),
+        '/login': (context) => const LoginPage(),
+        '/sign-up': (context) => const SignUpPage(),
+        '/forgot-password': (context) => const ForgotPasswordPage(),
+      },
+    );
   }
 }
