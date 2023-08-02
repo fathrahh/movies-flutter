@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -27,32 +29,51 @@ class _HomeCarouselState extends State<HomeCarousel> {
         CarouselSlider(
           carouselController: higlightCarouselController,
           options: CarouselOptions(
-              height: 525,
+              // Sementara make 3/5 viewport height
+              height: MediaQuery.of(context).size.height * 3 / 5,
               viewportFraction: 0.8,
               autoPlay: true,
+              disableCenter: true,
               enlargeCenterPage: true,
               onPageChanged: (idx, reason) {
                 setCurrentHighlight(idx);
               }),
           items: widget.imgSrc.asMap().entries.map((item) {
+            bool isBlur = item.key != _currentHighlight;
+
             return Builder(builder: (BuildContext context) {
               return Container(
-                clipBehavior: Clip.hardEdge,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(
                     Radius.circular(32.0),
                   ),
                 ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    splashColor: Colors.black87,
-                    child: Image.asset(
-                      'images/${item.value}',
-                      fit: BoxFit.fitHeight,
-                      width: MediaQuery.of(context).size.width * 0.8,
+                clipBehavior: Clip.hardEdge,
+                child: Stack(
+                  children: [
+                    SizedBox.expand(
+                      child: ImageFiltered(
+                        imageFilter: ImageFilter.blur(
+                          sigmaX: isBlur ? 5.0 : 0,
+                          sigmaY: isBlur ? 5.0 : 0,
+                        ),
+                        child: Image.asset(
+                          'images/${item.value}',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  ),
+                    Positioned.fill(
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {},
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               );
             });

@@ -1,6 +1,6 @@
 import 'package:filmio/config/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:filmio/config/theme.dart';
+import 'package:filmio/config/theme/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
