@@ -6,6 +6,7 @@ final ThemeData theme = ThemeData(
   inputDecorationTheme: _inputDecorationTheme,
   listTileTheme: _listTileTheme,
   checkboxTheme: _checkboxTheme,
+  fontFamily: 'Figtree',
 );
 
 final CheckboxThemeData _checkboxTheme = CheckboxThemeData(
@@ -15,7 +16,6 @@ final CheckboxThemeData _checkboxTheme = CheckboxThemeData(
     width: 2.0,
     style: BorderStyle.solid,
   ),
-  
   checkColor: MaterialStateProperty.all(const Color.fromRGBO(210, 209, 212, 1)),
   fillColor: const MaterialStatePropertyAll(Color.fromRGBO(25, 24, 37, 1)),
   shape: const RoundedRectangleBorder(

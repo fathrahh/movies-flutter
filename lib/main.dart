@@ -1,9 +1,6 @@
-import 'package:filmio/presentation/screen/auth/forgot_password_screen.dart';
-import 'package:filmio/presentation/screen/auth/signup_screen.dart';
+import 'package:filmio/config/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:filmio/presentation/screen/home/home_screen.dart';
 import 'package:filmio/config/theme.dart';
-import 'package:filmio/presentation/screen/auth/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,12 +21,7 @@ class MyApp extends StatelessWidget {
             ),
       ),
       initialRoute: '/login',
-      routes: {
-        '/': (context) => const MyHomePage(title: "flutter App"),
-        '/login': (context) => const LoginPage(),
-        '/sign-up': (context) => const SignUpPage(),
-        '/forgot-password': (context) => const ForgotPasswordPage(),
-      },
+      routes: routes,
     );
   }
 }

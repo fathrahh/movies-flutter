@@ -1,18 +1,18 @@
 import 'package:filmio/common_widgets/gradient_button.dart';
 import 'package:filmio/common_widgets/gradient_text.dart';
-import 'package:filmio/common_widgets/gradient_text_field_form.dart';
+import 'package:filmio/common_widgets/otp_field.dart';
 import 'package:filmio/presentation/screen/auth/layout.dart';
 
 import 'package:flutter/material.dart';
 
-class ForgotPasswordPage extends StatefulWidget {
-  const ForgotPasswordPage({Key? key}) : super(key: key);
+class VerificationPage extends StatefulWidget {
+  const VerificationPage({Key? key}) : super(key: key);
 
   @override
-  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
+  State<VerificationPage> createState() => _VerificationPageState();
 }
 
-class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+class _VerificationPageState extends State<VerificationPage> {
   late TextEditingController _controller;
 
   @override
@@ -31,13 +31,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return AuthLayout(
       title: const [
-        TextSpan(text: "Uh-oh, lost your password?"),
+        TextSpan(text: "Let's verify your account"),
       ],
       subtitle:
-          "We're here to save the day! Just enter your email and we'll take care of the rest",
+          "To complete your account setup, enter the 4-digit OTP code we sent to you",
       children: [
-        const GradientBorderTextField(
-          hintText: "Enter your email",
+        const OTPField(
+          length: 4,
         ),
         const SizedBox(
           height: 16,
@@ -47,20 +47,21 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             text: TextSpan(
               style: const TextStyle(),
               children: [
-                const TextSpan(text: "Remember Password? "),
+                const TextSpan(text: "Didn't receive code? "),
                 WidgetSpan(
                   child: GestureDetector(
                     onTap: () => Navigator.pushNamed(context, '/login'),
                     child: const GradientText(
-                      "Sign in",
+                      "Resend code",
                     ),
                   ),
                 ),
+                const TextSpan(text: " in 59 seconds"),
               ],
             ),
           ),
         ),
-        Expanded(
+        const Expanded(
           child: Stack(
             children: [
               Positioned(
@@ -68,9 +69,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 right: 0,
                 bottom: 70,
                 child: GradientButton(
-                  text: "Reset Password",
-                  onPressed: () =>
-                      Navigator.pushNamed(context, "/verification"),
+                  text: "verify",
                 ),
               )
             ],

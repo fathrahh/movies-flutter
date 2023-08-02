@@ -5,12 +5,14 @@ class GradientBorderTextField extends StatefulWidget {
   final String hintText;
   final bool obscureText;
   final TextEditingController? controller;
+  final FocusNode? focusNode;
 
   const GradientBorderTextField({
     super.key,
     this.hintText = "Enter Text...",
     this.obscureText = false,
     this.controller,
+    this.focusNode,
   });
 
   @override
@@ -20,15 +22,16 @@ class GradientBorderTextField extends StatefulWidget {
 
 class _GradientBorderTextFieldState extends State<GradientBorderTextField> {
   final BorderRadius _borderRadius = BorderRadius.circular(16.0);
-
   late FocusNode textEditingFocusNode;
+  bool _obsecureText = false;
   double _padding = 0;
 
   @override
   void initState() {
     super.initState();
-    textEditingFocusNode = FocusNode();
+    textEditingFocusNode = widget.focusNode ?? FocusNode();
     textEditingFocusNode.addListener(_onChangeFocus);
+    _obsecureText = widget.obscureText;
   }
 
   @override
@@ -38,6 +41,8 @@ class _GradientBorderTextFieldState extends State<GradientBorderTextField> {
 
     super.dispose();
   }
+
+  void _obSecureToggle() => setState(() => _obsecureText = !_obsecureText);
 
   void _onChangeFocus() {
     setState(() {
@@ -74,10 +79,20 @@ class _GradientBorderTextFieldState extends State<GradientBorderTextField> {
               alignment: Alignment.center,
               decoration: BoxDecoration(borderRadius: _borderRadius),
               child: TextFormField(
+                style: const TextStyle(color: Colors.black),
                 controller: widget.controller,
                 focusNode: textEditingFocusNode,
-                obscureText: widget.obscureText,
+                obscureText: _obsecureText,
                 decoration: InputDecoration(
+                  suffixIcon: widget.obscureText
+                      ? IconButton(
+                          splashRadius: 20.0,
+                          onPressed: _obSecureToggle,
+                          icon: Icon(_obsecureText
+                              ? Icons.remove_red_eye
+                              : Icons.remove_red_eye_outlined),
+                        )
+                      : null,
                   hintText: widget.hintText,
                 ),
               ),
