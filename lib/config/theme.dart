@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final ThemeData theme = ThemeData(
   // useMaterial3: true,
-  scaffoldBackgroundColor: const Color.fromRGBO(25, 24, 37, 1),
+  scaffoldBackgroundColor: const Color.fromRGBO(28, 26, 41, 1),
   inputDecorationTheme: _inputDecorationTheme,
   listTileTheme: _listTileTheme,
   checkboxTheme: _checkboxTheme,

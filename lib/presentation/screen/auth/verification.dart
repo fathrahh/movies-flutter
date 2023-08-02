@@ -61,7 +61,7 @@ class _VerificationPageState extends State<VerificationPage> {
             ),
           ),
         ),
-        const Expanded(
+        Expanded(
           child: Stack(
             children: [
               Positioned(
@@ -70,6 +70,7 @@ class _VerificationPageState extends State<VerificationPage> {
                 bottom: 70,
                 child: GradientButton(
                   text: "verify",
+                  onPressed: () => Navigator.pushNamed(context, '/'),
                 ),
               )
             ],
