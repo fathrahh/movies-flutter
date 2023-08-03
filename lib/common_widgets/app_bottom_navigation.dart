@@ -25,15 +25,38 @@ class AppBottomNavigation extends StatelessWidget {
         ),
       ),
       child: BottomNavigationBar(
-          backgroundColor: ThemeColors.primary,
-          items: _items.map((item) {
-            return BottomNavigationBarItem(
-              label: item['label'],
-              icon: SvgPicture.asset("assets/icons/${item['icon']}.svg"),
-              activeIcon:
-                  SvgPicture.asset("assets/icons/${item['activeIcon']}.svg"),
-            );
-          }).toList()),
+        // useLegacyColorScheme: false,
+        type: BottomNavigationBarType.fixed,
+        items: _items.map((item) {
+          return BottomNavigationBarItem(
+            label: item['label'],
+            icon: Column(
+              children: [
+                SvgPicture.asset(
+                  "assets/icons/${item['icon']}.svg",
+                  colorFilter: ColorFilter.mode(
+                    ThemeColors.gray.shade400,
+                    BlendMode.srcIn,
+                  ),
+                ),
+                const SizedBox(height: 4),
+              ],
+            ),
+            activeIcon: Column(
+              children: [
+                SvgPicture.asset(
+                  "assets/icons/${item['activeIcon']}.svg",
+                  colorFilter: const ColorFilter.mode(
+                    ThemeColors.white,
+                    BlendMode.srcIn,
+                  ),
+                ),
+                const SizedBox(height: 4),
+              ],
+            ),
+          );
+        }).toList(),
+      ),
     );
   }
 }
