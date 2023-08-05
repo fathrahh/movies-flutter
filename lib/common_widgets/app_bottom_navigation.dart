@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppBottomNavigation extends StatelessWidget {
-  AppBottomNavigation({super.key});
+  AppBottomNavigation(
+      {super.key, required this.selectedIndex, required this.onTap});
+  final void Function(int) onTap;
+  final int selectedIndex;
 
   final List<Map<String, String>> _items = [
     {"label": "Home", "icon": "home-outline", "activeIcon": "home-bold"},
@@ -26,6 +29,8 @@ class AppBottomNavigation extends StatelessWidget {
       ),
       child: BottomNavigationBar(
         // useLegacyColorScheme: false,
+        onTap: onTap,
+        currentIndex: selectedIndex,
         type: BottomNavigationBarType.fixed,
         items: _items.map((item) {
           return BottomNavigationBarItem(

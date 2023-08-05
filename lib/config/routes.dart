@@ -2,7 +2,7 @@ import 'package:filmio/presentation/screen/auth/forgot_password_screen.dart';
 import 'package:filmio/presentation/screen/auth/login_screen.dart';
 import 'package:filmio/presentation/screen/auth/signup_screen.dart';
 import 'package:filmio/presentation/screen/auth/verification.dart';
-import 'package:filmio/presentation/screen/home/home_screen.dart';
+import 'package:filmio/presentation/screen/home/tab_screen.dart';
 import 'package:flutter/material.dart';
 
 final routes = {
@@ -18,5 +18,5 @@ Map<String, Widget Function(BuildContext)> authRoutes = {
 };
 
 Map<String, Widget Function(BuildContext)> appRoutes = {
-  '/': (context) => const MyHomePage(title: "flutter App"),
+  TabScreenPage.routeName: (context) => const TabScreenPage(),
 };

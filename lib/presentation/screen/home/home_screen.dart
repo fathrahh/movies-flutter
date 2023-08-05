@@ -4,19 +4,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:filmio/constants/colors.dart';
 import 'package:filmio/presentation/screen/home/widgets/home_movie_list.dart';
 import 'package:filmio/presentation/screen/home/widgets/home_carousel.dart';
-import 'package:filmio/common_widgets/app_bottom_navigation.dart';
 
 import 'dart:math';
 
-class MyHomePage extends StatefulWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   final List<String> imgSrc = [
     "twilight.jpeg",
     "quantum_poster.jpg",
@@ -25,67 +23,64 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: AppBottomNavigation(),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(
-            0, MediaQuery.of(context).viewPadding.top + 24, 0, 0),
-        child: Column(
-          children: <Widget>[
-            HomeCarousel(imgSrc: imgSrc),
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      const Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Continue watching',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                            ),
+    return SingleChildScrollView(
+      padding: EdgeInsets.fromLTRB(
+          0, MediaQuery.of(context).viewPadding.top + 24, 0, 0),
+      child: Column(
+        children: <Widget>[
+          HomeCarousel(imgSrc: imgSrc),
+          const SizedBox(height: 12),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Continue watching',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
                           ),
-                          Text(
-                            'See all',
-                            style: TextStyle(
-                              color: ThemeColors.gray,
-                              fontSize: 12,
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      SizedBox(
-                        height: 130,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 10,
-                          separatorBuilder: (context, index) =>
-                              const SizedBox(width: 8),
-                          itemBuilder: (context, index) {
-                            return const ContinueWatchWidget();
-                          },
                         ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  const HomeMovieList(),
-                ],
-              ),
-            )
-          ],
-        ),
+                        Text(
+                          'See all',
+                          style: TextStyle(
+                            color: ThemeColors.gray,
+                            fontSize: 12,
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    SizedBox(
+                      height: 130,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 10,
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(width: 8),
+                        itemBuilder: (context, index) {
+                          return const ContinueWatchWidget();
+                        },
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const HomeMovieList(),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
