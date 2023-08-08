@@ -57,7 +57,9 @@ class _TabScreenPageState extends State<TabScreenPage> {
       ),
       body: PageStorage(
         bucket: bucket,
-        child: _pages[_selectedPage],
+        child: SafeArea(
+          child: _pages[_selectedPage],
+        ),
       ),
     );
   }

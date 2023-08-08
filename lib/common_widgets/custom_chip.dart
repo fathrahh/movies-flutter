@@ -6,16 +6,20 @@ class CustomChip extends StatelessWidget {
     super.key,
     this.text = "Example",
     this.prefixIcon,
+    this.prefix,
     this.sufficIcon,
     this.textStyle,
     this.backgroundColor = ThemeColors.primary,
     this.onTap,
+    this.padding,
   });
 
+  final EdgeInsetsGeometry? padding;
   final String text;
   final Widget? prefixIcon;
   final Widget? sufficIcon;
-  final Color backgroundColor;
+  final Widget? prefix;
+  final Color? backgroundColor;
   final TextStyle? textStyle;
   final void Function()? onTap;
 
@@ -35,13 +39,17 @@ class CustomChip extends StatelessWidget {
             onTap: onTap,
             splashColor: ThemeColors.primary.shade50.withOpacity(0.2),
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 0,
-              ),
+              padding: padding != null
+                  ? padding!
+                  : const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 0,
+                    ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   prefixIcon != null ? prefixIcon! : Container(),
+                  if (prefix != null) prefix!,
                   Text(
                     text,
                     style: TextStyle(
